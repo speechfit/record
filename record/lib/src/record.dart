@@ -167,7 +167,11 @@ class AudioRecorder {
     }
     _stateStreamCtrl.close();
 
-    await RecordPlatform.instance.dispose(_recorderId);
+    try {
+      await RecordPlatform.instance.dispose(_recorderId);
+    } catch (e) {
+      // Handle or log the exception
+    }
 
     await _stopRecordStream();
   }
